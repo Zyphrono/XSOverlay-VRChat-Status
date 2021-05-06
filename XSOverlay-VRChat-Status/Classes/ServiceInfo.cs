@@ -83,24 +83,20 @@ namespace XSOverlay_VRChat_Status.Classes
                             } catch (Exception e)
                             {
                                 Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
-
                                 noConnection();
-                        }
-
+                            }
                         }
                         else
                         {
                             Log("[ERROR] Failed to check for VRChat API status. Error: Access denied or the server isn't responding. It is recommended to close the program and wait for 10 minutes.");
                             noConnection();
-                    }
+                        }
                     }
                     catch (Exception e)
                     {
                         Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
                         noConnection();
                     }
-
-
                 }
         }
 

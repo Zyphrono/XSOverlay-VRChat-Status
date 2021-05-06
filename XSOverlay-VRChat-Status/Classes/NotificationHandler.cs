@@ -49,7 +49,6 @@ namespace XSOverlay_VRChat_Status.Classes
                 sendAlert("Player State Changes", Program.Serviceinfo.StateChangesStatus);
 
             }
-
         }
 
         public void sendAlert(string serviceName, int status)
