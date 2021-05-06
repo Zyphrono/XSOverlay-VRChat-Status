@@ -43,7 +43,6 @@ namespace XSOverlay_VRChat_Status
                 Log("XSNotifier couldn't be started. Please try again.");
                 Log(Convert.ToString(ex));
                 prepareShutdown();
-
             }
 
             checkTimer = new System.Timers.Timer();
@@ -56,7 +55,6 @@ namespace XSOverlay_VRChat_Status
                 Log("[NOTICE] VRChat isn't running. The application will now sleep until VRChat becomes active.");
             }
             Thread.Sleep(Timeout.Infinite);
-
         }
 
         static void cancelCheckTimer()
@@ -82,7 +80,6 @@ namespace XSOverlay_VRChat_Status
                 Serviceinfo.getStatusses();
             }
             Thread.Sleep(Timeout.Infinite);
-
         }
 
         public static void SendNotification(XSNotification notification)
@@ -102,6 +99,5 @@ namespace XSOverlay_VRChat_Status
         {
             Console.WriteLine(message);
         }
-
     }
 }
