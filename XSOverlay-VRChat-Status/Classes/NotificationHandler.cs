@@ -50,7 +50,6 @@ namespace XSOverlay_VRChat_Status.Classes
 
             }
 
-
         }
 
         public void sendAlert(string serviceName, int status)

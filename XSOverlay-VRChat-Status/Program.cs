@@ -23,7 +23,6 @@ namespace XSOverlay_VRChat_Status
         public static string errorMessageTitle = Properties.Resources.errorMessage_Title;
         public static string errorMessageDefaultMessage = Properties.Resources.errorMessage_DefaultMessage;
 
-
         static void Main(string[] args)
         {
             try
@@ -58,7 +57,6 @@ namespace XSOverlay_VRChat_Status
             }
             Thread.Sleep(Timeout.Infinite);
 
-
         }
 
         static void cancelCheckTimer()
@@ -73,7 +71,6 @@ namespace XSOverlay_VRChat_Status
             Log("The application is now inactive. Please restart to reactivate.");
             Notifier.Dispose();
             cancelCheckTimer();
-
             Console.ReadKey();
             Environment.Exit(0);
         }
@@ -83,7 +80,6 @@ namespace XSOverlay_VRChat_Status
             if (Serviceinfo.VRChatRunning())
             {
                 Serviceinfo.getStatusses();
-                
             }
             Thread.Sleep(Timeout.Infinite);
 
@@ -105,7 +101,6 @@ namespace XSOverlay_VRChat_Status
         public static void Log(string message) //Log to the console that is running.
         {
             Console.WriteLine(message);
-
         }
 
     }
