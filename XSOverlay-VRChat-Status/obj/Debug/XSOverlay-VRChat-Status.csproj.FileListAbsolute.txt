@@ -37,10 +37,8 @@ I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\bin\Debug\RestS
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSOverlay-VRChat-Status.exe.config
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSOverlay-VRChat-Status.exe
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSOverlay-VRChat-Status.pdb
-I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Cachet.NET.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Microsoft.Bcl.AsyncInterfaces.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Newtonsoft.Json.dll
-I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\RestSharp.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Buffers.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Drawing.Common.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Memory.dll
@@ -51,10 +49,8 @@ I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.T
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Threading.Tasks.Extensions.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.ValueTuple.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSNotifications.dll
-I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Cachet.NET.pdb
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Microsoft.Bcl.AsyncInterfaces.xml
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Newtonsoft.Json.xml
-I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\RestSharp.xml
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Buffers.xml
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Memory.xml
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Numerics.Vectors.xml

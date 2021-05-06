@@ -11,39 +11,57 @@ namespace XSOverlay_VRChat_Status.Classes
 {
     class NotificationHandler : Program
     {
-        private int currentsdkstatus, currentsocialstatus, currentauthstatus, currentnetworkingstatus, currentstatechangestatus = 1;
+        private int currentsdkstatus = 1;
+        private int currentsocialstatus = 1;
+        private int currentauthstatus = 1;
+        private int currentnetworkingstatus = 1;
+        private int currentstatechangestatus = 1;
 
         public void checkForChanges()
         {
             if(Program.Serviceinfo.AuthStatus != currentauthstatus)
             {
-                currentauthstatus = Program.Serviceinfo.AuthStatus;
-
-                sendAlert("Authentication", Program.Serviceinfo.AuthStatus);
+                if (Program.Serviceinfo.AuthStatus != 0)
+                {
+                    currentauthstatus = Program.Serviceinfo.AuthStatus;
+                    sendAlert("Authentication", currentauthstatus);
+                }
             }
 
             if (Program.Serviceinfo.SDKStatus != currentsdkstatus)
             {
-                currentsdkstatus = Program.Serviceinfo.SDKStatus;
-                sendAlert("SDK Uploads", Program.Serviceinfo.SDKStatus);
+                if (Program.Serviceinfo.SDKStatus != 0)
+                {
+                    currentsdkstatus = Program.Serviceinfo.SDKStatus;
+                    sendAlert("SDK Uploads", currentsdkstatus);
+                }
             }
 
             if (Program.Serviceinfo.SocialStatus != currentsocialstatus)
             {
-                currentsocialstatus = Program.Serviceinfo.SocialStatus;
-                sendAlert("Social", Program.Serviceinfo.SocialStatus);
+                if (Program.Serviceinfo.SocialStatus != 0)
+                {
+                    currentsocialstatus = Program.Serviceinfo.SocialStatus;
+                    sendAlert("Social", currentsocialstatus);
+                }
             }
 
             if (Program.Serviceinfo.NetworkingStatus != currentnetworkingstatus)
             {
-                currentnetworkingstatus = Program.Serviceinfo.NetworkingStatus;
-                sendAlert("Realtime Networking", Program.Serviceinfo.NetworkingStatus);
+                if (Program.Serviceinfo.NetworkingStatus != 0)
+                {
+                    currentnetworkingstatus = Program.Serviceinfo.NetworkingStatus;
+                    sendAlert("Realtime Networking", currentnetworkingstatus);
+                }
             }
 
             if (Program.Serviceinfo.StateChangesStatus != currentstatechangestatus)
             {
-                currentstatechangestatus = Program.Serviceinfo.StateChangesStatus;
-                sendAlert("Player State Changes", Program.Serviceinfo.StateChangesStatus);
+                if (Program.Serviceinfo.StateChangesStatus != 0)
+                {
+                    currentstatechangestatus = Program.Serviceinfo.StateChangesStatus;
+                    sendAlert("Player State Changes", Program.Serviceinfo.StateChangesStatus);
+                }
             }
         }
 

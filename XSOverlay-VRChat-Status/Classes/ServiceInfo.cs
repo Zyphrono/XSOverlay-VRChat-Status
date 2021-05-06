@@ -7,17 +7,24 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Cachet.NET;
 using XSNotifications;
 using XSNotifications.Enum;
 using XSNotifications.Helpers;
+using System.Net.Http;
+using System.Threading;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 // This class gets all the information from the VRChat Status API https://status.vrchat.com/api/v1
 namespace XSOverlay_VRChat_Status.Classes
 {
     class ServiceInfo : Program
     {
-        private int _sdkstatus, _socialstatus, _authstatus, _networkingstatus, _statechangestatus;
+        private int _sdkstatus = 1;
+        private int _socialstatus = 1;
+        private int _authstatus = 1;
+        private int _networkingstatus = 1;
+        private int _statechangestatus = 1;
         public int SDKStatus
         {
             get { return _sdkstatus; }
@@ -51,32 +58,52 @@ namespace XSOverlay_VRChat_Status.Classes
             }
         }
 
+        public static Classes.JsonStorage jsonStorage = new Classes.JsonStorage();
+
         public void getStatusses()
         {
                 if(VRChatRunning())
                 { 
-                    var Cachet = new Cachet.NET.Cachet("https://status.vrchat.com/api/v1/");
                     try
                     {
-                        var IsPingValid = Cachet.Ping();
+                        var IsPingValid = true;
                         if (IsPingValid)
                         {
-                            try
-                            {
-                                var networkingstatus = Cachet.GetComponent(1);
-                                _networkingstatus = Convert.ToInt16(networkingstatus.Component.Status);
+                        try
+                        {
+                                Task tasknetworking = ServiceInfo.GetServiceStatus(1);
+                                tasknetworking.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _networkingstatus = jsonStorage.status;
+                                }
 
-                                var authentication = Cachet.GetComponent(2);
-                                _authstatus = Convert.ToInt16(authentication.Component.Status);
+                                Task taskauth = ServiceInfo.GetServiceStatus(2);
+                                taskauth.Wait();
+                                if (jsonStorage.status != 0) {
+                                    _authstatus = jsonStorage.status;
+                                }
 
-                                var SDK = Cachet.GetComponent(3);
-                                _sdkstatus = Convert.ToInt16(SDK.Component.Status);
+                                Task taskSDK = ServiceInfo.GetServiceStatus(3);
+                                taskSDK.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _sdkstatus = jsonStorage.status;
+                                }
 
-                                var Social = Cachet.GetComponent(4);
-                                _socialstatus = Convert.ToInt16(Social.Component.Status);
+                                Task tasksocial = ServiceInfo.GetServiceStatus(4);
+                                tasksocial.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _socialstatus = jsonStorage.status;
+                                }
 
-                                var Statechanges = Cachet.GetComponent(5);
-                                _statechangestatus = Convert.ToInt16(Statechanges.Component.Status);
+                                Task taskstatechange = ServiceInfo.GetServiceStatus(5);
+                                taskstatechange.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _statechangestatus = jsonStorage.status;
+                                }
 
                                 notificationHandler.checkForChanges();
                             } catch (Exception e)
@@ -97,6 +124,25 @@ namespace XSOverlay_VRChat_Status.Classes
                         noConnection();
                     }
                 }
+        }
+
+        private static async Task GetServiceStatus(int CompID)
+        {
+            string apiurl = "https://status.vrchat.com/api/v1/components/" + CompID;
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
+                var request = new HttpRequestMessage(HttpMethod.Get, apiurl);
+                using (var response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var content = await response.Content.ReadAsStringAsync();
+                    JObject jsonObject2 = JObject.Parse(content);
+                    jsonStorage.status = Convert.ToInt32(jsonObject2["data"]["status"].ToString());
+                }
+            }
         }
 
         public void noConnection()
