@@ -37,7 +37,6 @@ namespace XSOverlay_VRChat_Status.Classes
         public int StateChangesStatus
         {
             get { return _statechangestatus; }
-
         }
 
         public bool VRChatRunning()

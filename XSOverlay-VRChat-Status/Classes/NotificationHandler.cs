@@ -26,28 +26,24 @@ namespace XSOverlay_VRChat_Status.Classes
             {
                 currentsdkstatus = Program.Serviceinfo.SDKStatus;
                 sendAlert("SDK Uploads", Program.Serviceinfo.SDKStatus);
-
             }
 
             if (Program.Serviceinfo.SocialStatus != currentsocialstatus)
             {
                 currentsocialstatus = Program.Serviceinfo.SocialStatus;
                 sendAlert("Social", Program.Serviceinfo.SocialStatus);
-
             }
 
             if (Program.Serviceinfo.NetworkingStatus != currentnetworkingstatus)
             {
                 currentnetworkingstatus = Program.Serviceinfo.NetworkingStatus;
                 sendAlert("Realtime Networking", Program.Serviceinfo.NetworkingStatus);
-
             }
 
             if (Program.Serviceinfo.StateChangesStatus != currentstatechangestatus)
             {
                 currentstatechangestatus = Program.Serviceinfo.StateChangesStatus;
                 sendAlert("Player State Changes", Program.Serviceinfo.StateChangesStatus);
-
             }
         }
 
