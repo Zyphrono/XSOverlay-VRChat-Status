@@ -1,17 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using XSNotifications;
 using XSNotifications.Enum;
 using XSNotifications.Helpers;
 using System.Net.Http;
-using System.Threading;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 

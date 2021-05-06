@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using XSNotifications;
 using XSNotifications.Enum;
 using XSNotifications.Helpers;
+using System.Windows.Forms;
 
 namespace XSOverlay_VRChat_Status
 {
@@ -18,13 +14,30 @@ namespace XSOverlay_VRChat_Status
         public static System.Timers.Timer checkTimer;
         public static Classes.ServiceInfo Serviceinfo;
         public static Classes.NotificationHandler notificationHandler;
-
+        private static Mutex applicationMutex;
+        private static bool isMutedActive = false;
         public static int noConnectionamount { get; set; }
         public static string errorMessageTitle = Properties.Resources.errorMessage_Title;
         public static string errorMessageDefaultMessage = Properties.Resources.errorMessage_DefaultMessage;
 
         static void Main(string[] args)
         {
+            try
+            {
+                applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);
+                applicationMutex.WaitOne(TimeSpan.Zero);
+                if (!isMutedActive)
+                {
+                    MessageBox.Show("Looks like another instance is already running. This instance will now be closed.");
+                    Environment.Exit(0);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Looks like another instance is already running. This instance will now be closed.");
+                Environment.Exit(0);
+            }
+
             try
             {
                 Notifier = new XSNotifier();
