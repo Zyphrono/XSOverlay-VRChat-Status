@@ -30,3 +30,5 @@ I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSO
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSOverlay-VRChat-Status.exe
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSOverlay-VRChat-Status.pdb
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSOverlay-VRChat-Status.csprojAssemblyReference.cache
+I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Release\Onova.dll
+I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Release\Onova.xml

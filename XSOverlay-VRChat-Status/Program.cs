@@ -5,6 +5,7 @@ using XSNotifications;
 using XSNotifications.Enum;
 using XSNotifications.Helpers;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace XSOverlay_VRChat_Status
 {
@@ -13,6 +14,7 @@ namespace XSOverlay_VRChat_Status
         public static XSNotifier Notifier { get; set; }
         public static System.Timers.Timer checkTimer;
         public static Classes.ServiceInfo Serviceinfo;
+        public static Classes.Update updater;
         public static Classes.NotificationHandler notificationHandler;
         private static Mutex applicationMutex;
         private static bool isMutedActive = false;
@@ -36,6 +38,24 @@ namespace XSOverlay_VRChat_Status
             {
                 MessageBox.Show("Looks like another instance is already running. This instance will now be closed.");
                 Environment.Exit(0);
+            }
+            updater = new Classes.Update();
+
+            var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
+
+            if(updateversion != null)
+            {
+                if(MessageBox.Show("Looks like there's an updater available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Log("An update is currently being downloaded and will be installed automatically. ");
+                    updater.PrepareUpdateAsync(updateversion).Wait();
+
+                    Log("Update has been downloaded. The program will now install and restart.");
+                    updater.FinalizeUpdate(true);
+                }
+            } else
+            {
+                Log("[UPDATER] You're currently using the latest stable build.");
             }
 
             try

@@ -140,12 +140,6 @@ namespace XSOverlay_VRChat_Status.Classes
 
         public void noConnection()
         {
-            _networkingstatus = 1;
-            _authstatus = 1;
-            _sdkstatus = 1;
-            _socialstatus = 1;
-            _statechangestatus = 1;
-
             if(noConnectionamount >= 2)
             {
                 Log("[ERROR] Tried connecting to VRChat API for over 2 times. The software will now be in an inactive state. Restart to reconnect.");
