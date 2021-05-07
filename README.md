@@ -2,6 +2,6 @@
 
 Nothing to read here yet... xD
 
-Required Runtime: .NET Framework 4.7.2
+Required Runtime: [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
 
 Platform: WINDOWS ONLY
