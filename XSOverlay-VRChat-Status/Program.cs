@@ -45,7 +45,7 @@ namespace XSOverlay_VRChat_Status
 
             if(updateversion != null)
             {
-                if(MessageBox.Show("Looks like there's an updater available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if(MessageBox.Show("Looks like there's an update available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     Log("An update is currently being downloaded and will be installed automatically. ");
                     updater.PrepareUpdateAsync(updateversion).Wait();
@@ -55,7 +55,7 @@ namespace XSOverlay_VRChat_Status
                 }
             } else
             {
-                Log("[UPDATER] You're currently using the latest stable build.");
+                Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
             }
 
             try
@@ -86,6 +86,9 @@ namespace XSOverlay_VRChat_Status
             if(!Serviceinfo.VRChatRunning())
             {
                 Log("[NOTICE] VRChat isn't running. The application will now sleep until VRChat becomes active.");
+            } else
+            {
+                Log("[NOTICE] VRChat is running. You're now receiving updates about their server status.");
             }
             Thread.Sleep(Timeout.Infinite);
         }

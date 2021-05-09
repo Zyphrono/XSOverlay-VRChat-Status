@@ -57,6 +57,7 @@ namespace XSOverlay_VRChat_Status.Classes
             {
                 _updateManager.LaunchUpdater(_updateVersion, needRestart);
                 _updaterLaunched = true;
+                Environment.Exit(0);
             }
             catch (UpdaterAlreadyLaunchedException)
             {
