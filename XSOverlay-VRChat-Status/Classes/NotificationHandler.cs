@@ -65,7 +65,7 @@ namespace XSOverlay_VRChat_Status.Classes
             if (status != 1)
             {
                 Log("[STATUS] Service " + serviceName + " is experiencing some difficulties.");
-                Notifier.SendNotification(new XSNotification()
+                Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Warning),
                     Title = "VRChat Status: " + serviceName,
@@ -75,7 +75,7 @@ namespace XSOverlay_VRChat_Status.Classes
             } else
             {
                 Log("[STATUS] Service " + serviceName + " is back up and running.");
-                Notifier.SendNotification(new XSNotification()
+                Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Default),
                     Title = "VRChat Status: " + serviceName,

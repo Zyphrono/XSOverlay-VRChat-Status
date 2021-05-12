@@ -41,21 +41,28 @@ namespace XSOverlay_VRChat_Status
             }
             updater = new Classes.Update();
 
-            var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
-
-            if(updateversion != null)
+            try
             {
-                if(MessageBox.Show("Looks like there's an update available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
+
+                if (updateversion != null)
                 {
-                    Log("An update is currently being downloaded and will be installed automatically. ");
-                    updater.PrepareUpdateAsync(updateversion).Wait();
+                    if (MessageBox.Show("Looks like there's an update available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Log("An update is currently being downloaded and will be installed automatically. ");
+                        updater.PrepareUpdateAsync(updateversion).Wait();
 
-                    Log("Update has been downloaded. The program will now install and restart.");
-                    updater.FinalizeUpdate(true);
+                        Log("Update has been downloaded. The program will now install and restart.");
+                        updater.FinalizeUpdate(true);
+                    }
                 }
-            } else
+                else
+                {
+                    Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                }
+            } catch(Exception e)
             {
-                Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                Log("[WARNING] Couldn't connect to GitHub to check for updates.");
             }
 
             try
@@ -63,7 +70,7 @@ namespace XSOverlay_VRChat_Status
                 Notifier = new XSNotifier();
                 Serviceinfo = new Classes.ServiceInfo();
                 notificationHandler = new Classes.NotificationHandler();
-                Notifier.SendNotification(new XSNotification()
+                Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Warning),
                     Title = "VRChat Status started!",
