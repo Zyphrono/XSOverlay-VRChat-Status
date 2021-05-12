@@ -146,7 +146,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Error),
-                    Title = Program.errorMessageTitle,
+                    Title = errorMessageTitle,
                     Content = $"Tried 2 times... Program will now be closed to prevent any spam.",
                     Height = 110.0f
                 });
@@ -157,8 +157,8 @@ namespace XSOverlay_VRChat_Status.Classes
                 Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Error),
-                    Title = Program.errorMessageTitle,
-                    Content = Program.errorMessageDefaultMessage,
+                    Title = errorMessageTitle,
+                    Content = errorMessageDefaultMessage,
                     Height = 110.0f
                 });
                 noConnectionamount++;

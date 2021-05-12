@@ -16,17 +16,20 @@ namespace XSOverlay_VRChat_Status
         public static Classes.ServiceInfo Serviceinfo;
         public static Classes.Update updater;
         public static Classes.NotificationHandler notificationHandler;
-        private static Mutex applicationMutex;
-        private static bool isMutedActive = false;
         public static int noConnectionamount { get; set; }
-        public static string errorMessageTitle = Properties.Resources.errorMessage_Title;
-        public static string errorMessageDefaultMessage = Properties.Resources.errorMessage_DefaultMessage;
+        public readonly string errorMessageTitle = Properties.Resources.errorMessage_Title;
+        public readonly string errorMessageDefaultMessage = Properties.Resources.errorMessage_DefaultMessage;
 
+        protected Program()
+        {
+
+        }
         static void Main(string[] args)
         {
+            bool isMutedActive = false;
             try
             {
-                applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);
+                Mutex applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);
                 applicationMutex.WaitOne(TimeSpan.Zero);
                 if (!isMutedActive)
                 {
