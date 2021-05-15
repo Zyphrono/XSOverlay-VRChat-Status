@@ -55,7 +55,9 @@ namespace XSOverlay_VRChat_Status.Classes
         public void FinalizeUpdate(bool needRestart)
         {
             if ((_updateVersion is null) || (!_updatePrepared) || (_updaterLaunched))
+            {
                 return;
+            }
 
             try
             {
