@@ -123,7 +123,7 @@ namespace XSOverlay_VRChat_Status
             }
             if(Properties.Settings.Default.launchMinimised == false)
             {
-                Log("HINT: You can leftclick the tray icon to hide and unhide this console window.");
+                Log("HINT: You can leftclick the tray icon to hide and unhide this console window. You can also rightclick this tray icon for some extra settings.");
             }
             Thread.Sleep(Timeout.Infinite);
         }

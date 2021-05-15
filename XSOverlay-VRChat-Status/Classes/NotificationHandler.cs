@@ -14,7 +14,7 @@ namespace XSOverlay_VRChat_Status.Classes
         private int currentauthstatus = 1;
         private int currentnetworkingstatus = 1;
         private int currentstatechangestatus = 1;
-        public static int minimizeMode = 0;
+        public static int minimizeMode;
 
         public static ContextMenu menu;
         public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup;
