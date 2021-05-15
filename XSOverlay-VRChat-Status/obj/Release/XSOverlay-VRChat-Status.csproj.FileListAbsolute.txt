@@ -65,3 +65,4 @@ C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Relea
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSOverlay-VRChat-Status.exe
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSOverlay-VRChat-Status.pdb
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Release\icon.ico
+C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Release\XSOverlay-VRChat-Status.csprojAssemblyReference.cache

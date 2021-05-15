@@ -17,7 +17,7 @@ namespace XSOverlay_VRChat_Status.Classes
         public static int minimizeMode;
 
         public static ContextMenu menu;
-        public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup;
+        public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup, mnuChangelog;
         public static NotifyIcon notificationIcon;
 
         public void checkForChanges()
@@ -104,10 +104,12 @@ namespace XSOverlay_VRChat_Status.Classes
                 mnuExit = new MenuItem("Exit");
                 mnuStartup = new MenuItem("Run on Windows startup");
                 mnuMinimiseStartup = new MenuItem("Launch Minimised");
+                mnuChangelog = new MenuItem("Open Changelog");
 
                 menu.MenuItems.Add(0, mnuStartup);
                 menu.MenuItems.Add(1, mnuMinimiseStartup);
-                menu.MenuItems.Add(2, mnuExit);
+                menu.MenuItems.Add(2, mnuChangelog);
+                menu.MenuItems.Add(3, mnuExit);
                 notificationIcon = new NotifyIcon
                 {
                     Icon = Properties.Resources.softwareIcon,
@@ -123,9 +125,10 @@ namespace XSOverlay_VRChat_Status.Classes
                     mnuMinimiseStartup.Checked = true;
                 }
                 notificationIcon.MouseClick += notificationIcon_MouseClick;
-                mnuExit.Click += new EventHandler(mnuExit_Click);
-                mnuStartup.Click += new EventHandler(mnuStartup_Click);
-                mnuMinimiseStartup.Click += new EventHandler(mnuMinimiseStartup_Click);
+                mnuExit.Click += mnuExit_Click;
+                mnuChangelog.Click += mnuChangelog_Click;
+                mnuStartup.Click += mnuStartup_Click;
+                mnuMinimiseStartup.Click += mnuMinimiseStartup_Click;
                 notificationIcon.Visible = true;
                 Application.Run();
             }
@@ -148,6 +151,10 @@ namespace XSOverlay_VRChat_Status.Classes
                     minimizeMode = 1;
                 }
             }
+        }
+        static void mnuChangelog_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/KnuffelBeestje/XSOverlay-VRChat-Status/releases/");
         }
         static void mnuMinimiseStartup_Click(object sender, EventArgs e)
         {
