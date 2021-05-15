@@ -14,7 +14,7 @@ namespace XSOverlay_VRChat_Status.Classes
         private int currentauthstatus = 1;
         private int currentnetworkingstatus = 1;
         private int currentstatechangestatus = 1;
-
+        public static int minimizeMode = 0;
 
         public static ContextMenu menu;
         public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup;
@@ -122,7 +122,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 {
                     mnuMinimiseStartup.Checked = true;
                 }
-                notificationIcon.Click += new EventHandler(notificationIcon_Click);
+                notificationIcon.MouseClick += notificationIcon_MouseClick;
                 mnuExit.Click += new EventHandler(mnuExit_Click);
                 mnuStartup.Click += new EventHandler(mnuStartup_Click);
                 mnuMinimiseStartup.Click += new EventHandler(mnuMinimiseStartup_Click);
@@ -133,9 +133,22 @@ namespace XSOverlay_VRChat_Status.Classes
 
             notifyThread.Start();
         }
-        static void notificationIcon_Click(object sender, EventArgs e)
+        static void notificationIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            toggleWindow(1);
+
+            if (e.Button == MouseButtons.Left)
+            {
+                if (minimizeMode == 1) { 
+                    toggleWindow(1);
+                    Log("");
+                    Log("The console window is now unhidden. You can simply rehide it by reclicking on the tray icon.");
+                    minimizeMode = 0;
+                } else
+                {
+                    toggleWindow(0);
+                    minimizeMode = 1;
+                }
+            }
         }
         static void mnuMinimiseStartup_Click(object sender, EventArgs e)
         {

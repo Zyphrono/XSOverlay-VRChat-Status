@@ -121,6 +121,10 @@ namespace XSOverlay_VRChat_Status
             {
                 Log("[NOTICE] VRChat is running. You're now receiving updates about their server status.");
             }
+            if(Properties.Settings.Default.launchMinimised == false)
+            {
+                Log("HINT: You can leftclick the tray icon to hide and unhide this console window.");
+            }
             Thread.Sleep(Timeout.Infinite);
         }
 
@@ -200,13 +204,15 @@ namespace XSOverlay_VRChat_Status
             {
                 var handle = GetConsoleWindow();
                 ShowWindow(handle, SW_HIDE);
+                Classes.NotificationHandler.minimizeMode = 1;
             } else
             {
                 var handle = GetConsoleWindow();
                 ShowWindow(handle, SW_SHOW);
+                Classes.NotificationHandler.minimizeMode = 0;
             }
         }
-
+        
         public static void toggleWindow(int type)
         {
             if(type == 0)
