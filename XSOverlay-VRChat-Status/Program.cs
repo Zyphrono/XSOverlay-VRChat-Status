@@ -175,8 +175,6 @@ namespace XSOverlay_VRChat_Status
                 case string a when a.Contains("[NOTICE]"):
                     color = ConsoleColor.Blue;
                     break;
-                default:
-                    break;
             }
             Console.ForegroundColor = color;
             Console.WriteLine(message);

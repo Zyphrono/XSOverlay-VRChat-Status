@@ -75,26 +75,6 @@ namespace XSOverlay_VRChat_Status.Classes
             RegistryKey rk;
             try
             {
-                rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-                if (AppPath == null)
-                {
-                    rk.DeleteValue(AppTitle);
-                }
-                else
-                {
-                    if (rk.GetValue(AppTitle).ToString().ToLower() == AppPath.ToLower())
-                    {
-                        rk.DeleteValue(AppTitle);
-                    }
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-            }
-
-            try
-            {
                 rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 if (AppPath == null)
                 {
@@ -134,29 +114,6 @@ namespace XSOverlay_VRChat_Status.Classes
         {
             RegistryKey rk;
             string value;
-
-            try
-            {
-                rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-                value = rk.GetValue(AppTitle).ToString();
-                if (value == null)
-                {
-                    return false;
-                }
-                else if (!value.ToLower().Equals(AppPath.ToLower()))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                log()
-            }
-
             try
             {
                 rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
@@ -177,7 +134,6 @@ namespace XSOverlay_VRChat_Status.Classes
             catch (Exception)
             {
             }
-
             return false;
         }
     }
