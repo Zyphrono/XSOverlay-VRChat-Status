@@ -28,16 +28,6 @@ namespace XSOverlay_VRChat_Status.Classes
             RegistryKey rk;
             try
             {
-                rk = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-                rk.SetValue(AppTitle, AppPath);
-                return true;
-            }
-            catch (Exception)
-            {
-            }
-
-            try
-            {
                 rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 rk.SetValue(AppTitle, AppPath);
             }
