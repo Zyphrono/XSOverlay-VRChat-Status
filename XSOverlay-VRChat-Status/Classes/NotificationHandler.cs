@@ -135,7 +135,6 @@ namespace XSOverlay_VRChat_Status.Classes
         }
         static void notificationIcon_MouseClick(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 if (minimizeMode == 1) { 

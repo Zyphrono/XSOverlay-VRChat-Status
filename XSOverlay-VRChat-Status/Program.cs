@@ -35,7 +35,6 @@ namespace XSOverlay_VRChat_Status
 
         protected Program()
         {
-
         }
         static void Main(string[] args)
         {
