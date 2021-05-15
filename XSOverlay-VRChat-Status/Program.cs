@@ -6,27 +6,45 @@ using XSNotifications.Enum;
 using XSNotifications.Helpers;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace XSOverlay_VRChat_Status
 {
     class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
         public static XSNotifier Notifier { get; set; }
         public static System.Timers.Timer checkTimer;
         public static Classes.ServiceInfo Serviceinfo;
         public static Classes.Update updater;
         public static Classes.NotificationHandler notificationHandler;
-        private static Mutex applicationMutex;
-        private static bool isMutedActive = false;
         public static int noConnectionamount { get; set; }
-        public static string errorMessageTitle = Properties.Resources.errorMessage_Title;
-        public static string errorMessageDefaultMessage = Properties.Resources.errorMessage_DefaultMessage;
+        public readonly string errorMessageTitle = Properties.Resources.errorMessage_Title;
+        public readonly string errorMessageDefaultMessage = Properties.Resources.errorMessage_DefaultMessage;
 
+        protected Program()
+        {
+        }
         static void Main(string[] args)
         {
+            bool isMutedActive = false;
+            settingsCheck();
+            Classes.NotificationHandler.createNotifyMenu();
+            minimisedCheck();
             try
             {
-                applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);
+                Mutex applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);
                 applicationMutex.WaitOne(TimeSpan.Zero);
                 if (!isMutedActive)
                 {
@@ -41,21 +59,33 @@ namespace XSOverlay_VRChat_Status
             }
             updater = new Classes.Update();
 
-            var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
-
-            if(updateversion != null)
+            try
             {
-                if(MessageBox.Show("Looks like there's an update available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
+
+                if (updateversion != null)
                 {
-                    Log("An update is currently being downloaded and will be installed automatically. ");
-                    updater.PrepareUpdateAsync(updateversion).Wait();
+                    toggleWindow(1);
+                    if (MessageBox.Show("Looks like there's an update available (" + updater.LastVersion + "). Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Log("An update is currently being downloaded and will be installed automatically. ");
+                        updater.PrepareUpdateAsync(updateversion).Wait();
 
-                    Log("Update has been downloaded. The program will now install and restart.");
-                    updater.FinalizeUpdate(true);
+                        Log("Update has been downloaded. The program will now install and restart.");
+                        updater.FinalizeUpdate(true);
+                    } else
+                    {
+                        toggleWindow(0);
+                        Log("[WARNING] Keeping your software up-to-date is essential to fix any issues. Pre-released versions will NEVER be installed to provide stability.");
+                    }
                 }
-            } else
+                else
+                {
+                    Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                }
+            } catch(Exception e)
             {
-                Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                Log("[WARNING] Couldn't connect to GitHub to check for updates.");
             }
 
             try
@@ -63,7 +93,7 @@ namespace XSOverlay_VRChat_Status
                 Notifier = new XSNotifier();
                 Serviceinfo = new Classes.ServiceInfo();
                 notificationHandler = new Classes.NotificationHandler();
-                Notifier.SendNotification(new XSNotification()
+                Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Warning),
                     Title = "VRChat Status started!",
@@ -90,6 +120,10 @@ namespace XSOverlay_VRChat_Status
             {
                 Log("[NOTICE] VRChat is running. You're now receiving updates about their server status.");
             }
+            if(Properties.Settings.Default.launchMinimised == false)
+            {
+                Log("HINT: You can leftclick the tray icon to hide and unhide this console window. You can also rightclick this tray icon for some extra settings.");
+            }
             Thread.Sleep(Timeout.Infinite);
         }
 
@@ -98,9 +132,9 @@ namespace XSOverlay_VRChat_Status
             checkTimer.Stop();
             checkTimer.Dispose();
         }
-
         public static void prepareShutdown() // Doesn't do anything besides cancelling everything while still running the console.
         {
+            toggleWindow(1);
             Log("");
             Log("The application is now inactive. Please restart to reactivate.");
             Notifier.Dispose();
@@ -131,9 +165,65 @@ namespace XSOverlay_VRChat_Status
             }
         }
 
-        public static void Log(string message) //Log to the console that is running.
+        public static void Log(string message, ConsoleColor color = ConsoleColor.White) //Log to the console that is running.
         {
+            switch (message)
+            {
+                case string a when a.Contains("[WARNING]"):
+                    color = ConsoleColor.Yellow;
+                    break;
+                case string a when a.Contains("[ERROR]"):
+                    color = ConsoleColor.Red;
+                    break;
+                case string a when a.Contains("[NOTICE]"):
+                    color = ConsoleColor.Blue;
+                    break;
+            }
+            Console.ForegroundColor = color;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void settingsCheck()
+        {
+            if(Classes.StartupManager.IsInStartup() == true)
+            {
+                Properties.Settings.Default.windowsStartup = true;
+            } else
+            {
+                Properties.Settings.Default.windowsStartup = false;
+            }
+
+            Properties.Settings.Default.Save();
+        }
+
+        public static void minimisedCheck()
+        {
+            if (Properties.Settings.Default.launchMinimised == true)
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_HIDE);
+                Classes.NotificationHandler.minimizeMode = 1;
+            } else
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_SHOW);
+                Classes.NotificationHandler.minimizeMode = 0;
+            }
+        }
+        
+        public static void toggleWindow(int type)
+        {
+            if(type == 0)
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_HIDE);
+            } else if(type == 1)
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_SHOW);
+                SetForegroundWindow(handle);
+            }
         }
     }
 }

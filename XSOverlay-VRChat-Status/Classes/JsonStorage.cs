@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XSOverlay_VRChat_Status.Classes
 {
-    class JsonStorage
+    public class JsonStorage
     {
         public int status { get; set; }
     }

@@ -51,7 +51,7 @@ namespace XSOverlay_VRChat_Status.Classes
             }
         }
 
-        public static Classes.JsonStorage jsonStorage = new Classes.JsonStorage();
+        public JsonStorage jsonStorage = new JsonStorage();
 
         public void getStatusses()
         {
@@ -64,34 +64,34 @@ namespace XSOverlay_VRChat_Status.Classes
                         {
                         try
                         {
-                                Task tasknetworking = ServiceInfo.GetServiceStatus(1);
+                                Task tasknetworking = GetServiceStatus(1);
                                 tasknetworking.Wait();
                                 if (jsonStorage.status != 0)
                                 {
                                     _networkingstatus = jsonStorage.status;
                                 }
 
-                                Task taskauth = ServiceInfo.GetServiceStatus(2);
+                                Task taskauth = GetServiceStatus(2);
                                 taskauth.Wait();
                                 if (jsonStorage.status != 0) {
                                     _authstatus = jsonStorage.status;
                                 }
 
-                                Task taskSDK = ServiceInfo.GetServiceStatus(3);
+                                Task taskSDK = GetServiceStatus(3);
                                 taskSDK.Wait();
                                 if (jsonStorage.status != 0)
                                 {
                                     _sdkstatus = jsonStorage.status;
                                 }
 
-                                Task tasksocial = ServiceInfo.GetServiceStatus(4);
+                                Task tasksocial = GetServiceStatus(4);
                                 tasksocial.Wait();
                                 if (jsonStorage.status != 0)
                                 {
                                     _socialstatus = jsonStorage.status;
                                 }
 
-                                Task taskstatechange = ServiceInfo.GetServiceStatus(5);
+                                Task taskstatechange = GetServiceStatus(5);
                                 taskstatechange.Wait();
                                 if (jsonStorage.status != 0)
                                 {
@@ -119,7 +119,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 }
         }
 
-        private static async Task GetServiceStatus(int CompID)
+        private async Task GetServiceStatus(int CompID)
         {
             string apiurl = "https://status.vrchat.com/api/v1/components/" + CompID;
             using (var client = new HttpClient())
@@ -143,10 +143,10 @@ namespace XSOverlay_VRChat_Status.Classes
             if(noConnectionamount >= 2)
             {
                 Log("[ERROR] Tried connecting to VRChat API for over 2 times. The software will now be in an inactive state. Restart to reconnect.");
-                Notifier.SendNotification(new XSNotification()
+                Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Error),
-                    Title = Program.errorMessageTitle,
+                    Title = errorMessageTitle,
                     Content = $"Tried 2 times... Program will now be closed to prevent any spam.",
                     Height = 110.0f
                 });
@@ -154,11 +154,11 @@ namespace XSOverlay_VRChat_Status.Classes
                 Program.prepareShutdown();
             } else
             {
-                Notifier.SendNotification(new XSNotification()
+                Notifier.SendNotification(new XSNotification
                 {
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Error),
-                    Title = Program.errorMessageTitle,
-                    Content = Program.errorMessageDefaultMessage,
+                    Title = errorMessageTitle,
+                    Content = errorMessageDefaultMessage,
                     Height = 110.0f
                 });
                 noConnectionamount++;

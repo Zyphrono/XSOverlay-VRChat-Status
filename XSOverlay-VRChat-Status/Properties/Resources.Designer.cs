@@ -77,5 +77,15 @@ namespace XSOverlay_VRChat_Status.Properties {
                 return ResourceManager.GetString("errorMessage.Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon softwareIcon {
+            get {
+                object obj = ResourceManager.GetObject("softwareIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }
