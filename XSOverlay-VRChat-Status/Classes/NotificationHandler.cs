@@ -14,7 +14,6 @@ namespace XSOverlay_VRChat_Status.Classes
         private int currentauthstatus = 1;
         private int currentnetworkingstatus = 1;
         private int currentstatechangestatus = 1;
-        public int notifyClickType = 0;
 
 
         public static ContextMenu menu;
@@ -174,7 +173,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 }
                 else
                 {
-                    MessageBox.Show("An error occoured while disabling launch on Windows startup. Try restarting the application as an administrator.", "VRChat Status Error", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                    MessageBox.Show("An error occoured while disabling launch on Windows startup. Try restarting the application as an administrator.", "VRChat Status Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             Properties.Settings.Default.Save();

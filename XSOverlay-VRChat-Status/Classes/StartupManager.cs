@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace XSOverlay_VRChat_Status.Classes
 {
-    class StartupManager
+    static class StartupManager
     {
         /// <summary>
         /// Adds this executable to the startup list.
@@ -91,6 +91,7 @@ namespace XSOverlay_VRChat_Status.Classes
             }
             catch (Exception)
             {
+                return false;
             }
 
             try
@@ -154,6 +155,7 @@ namespace XSOverlay_VRChat_Status.Classes
             }
             catch (Exception)
             {
+                log()
             }
 
             try
