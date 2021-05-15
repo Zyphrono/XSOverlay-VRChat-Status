@@ -20,6 +20,10 @@ namespace XSOverlay_VRChat_Status.Classes
         private bool _updaterLaunched;
         private Version _lastVersion;
 
+        public Version LastVersion
+        {
+            get { return _lastVersion; }
+        }
         public Version LatestAvailableVersion
         {
             get { return _lastVersion; }

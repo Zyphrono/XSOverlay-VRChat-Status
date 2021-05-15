@@ -6,11 +6,24 @@ using XSNotifications.Enum;
 using XSNotifications.Helpers;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace XSOverlay_VRChat_Status
 {
     class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
         public static XSNotifier Notifier { get; set; }
         public static System.Timers.Timer checkTimer;
         public static Classes.ServiceInfo Serviceinfo;
@@ -27,6 +40,9 @@ namespace XSOverlay_VRChat_Status
         static void Main(string[] args)
         {
             bool isMutedActive = false;
+            settingsCheck();
+            Classes.NotificationHandler.createNotifyMenu();
+            minimisedCheck();
             try
             {
                 Mutex applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);
@@ -50,13 +66,18 @@ namespace XSOverlay_VRChat_Status
 
                 if (updateversion != null)
                 {
-                    if (MessageBox.Show("Looks like there's an update available. Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    toggleWindow(1);
+                    if (MessageBox.Show("Looks like there's an update available (" + updater.LastVersion + "). Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         Log("An update is currently being downloaded and will be installed automatically. ");
                         updater.PrepareUpdateAsync(updateversion).Wait();
 
                         Log("Update has been downloaded. The program will now install and restart.");
                         updater.FinalizeUpdate(true);
+                    } else
+                    {
+                        toggleWindow(0);
+                        Log("[WARNING] Keeping your software up-to-date is essential to fix any issues. Pre-released versions will NEVER be installed to provide stability.");
                     }
                 }
                 else
@@ -108,9 +129,9 @@ namespace XSOverlay_VRChat_Status
             checkTimer.Stop();
             checkTimer.Dispose();
         }
-
         public static void prepareShutdown() // Doesn't do anything besides cancelling everything while still running the console.
         {
+            toggleWindow(1);
             Log("");
             Log("The application is now inactive. Please restart to reactivate.");
             Notifier.Dispose();
@@ -141,9 +162,63 @@ namespace XSOverlay_VRChat_Status
             }
         }
 
-        public static void Log(string message) //Log to the console that is running.
+        public static void Log(string message, ConsoleColor color = ConsoleColor.White) //Log to the console that is running.
         {
+            switch (message)
+            {
+                case string a when a.Contains("[WARNING]"):
+                    color = ConsoleColor.Yellow;
+                    break;
+                case string a when a.Contains("[ERROR]"):
+                    color = ConsoleColor.Red;
+                    break;
+                case string a when a.Contains("[NOTICE]"):
+                    color = ConsoleColor.Blue;
+                    break;
+            }
+            Console.ForegroundColor = color;
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void settingsCheck()
+        {
+            if(Classes.StartupManager.IsInStartup() == true)
+            {
+                Properties.Settings.Default.windowsStartup = true;
+            } else
+            {
+                Properties.Settings.Default.windowsStartup = false;
+            }
+
+            Properties.Settings.Default.Save();
+        }
+
+        public static void minimisedCheck()
+        {
+            if (Properties.Settings.Default.launchMinimised == true)
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_HIDE);
+            } else
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_SHOW);
+            }
+        }
+
+        public static void toggleWindow(int type)
+        {
+            if(type == 0)
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_HIDE);
+            } else if(type == 1)
+            {
+                var handle = GetConsoleWindow();
+                ShowWindow(handle, SW_SHOW);
+                SetForegroundWindow(handle);
+            }
         }
     }
 }

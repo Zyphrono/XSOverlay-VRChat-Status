@@ -86,10 +86,10 @@ C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Sy
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Text.Json.xml
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Threading.Tasks.Extensions.xml
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.ValueTuple.xml
-C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csprojAssemblyReference.cache
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay_VRChat_Status.Properties.Resources.resources
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.GenerateResource.cache
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.CoreCompileInputs.cache
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.CopyComplete
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.exe
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.pdb
+C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\icon.ico
