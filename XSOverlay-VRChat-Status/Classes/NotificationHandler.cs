@@ -108,7 +108,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 menu.MenuItems.Add(0, mnuStartup);
                 menu.MenuItems.Add(1, mnuMinimiseStartup);
                 menu.MenuItems.Add(2, mnuExit);
-                notificationIcon = new NotifyIcon()
+                notificationIcon = new NotifyIcon
                 {
                     Icon = Properties.Resources.softwareIcon,
                     ContextMenu = menu,
@@ -161,7 +161,7 @@ namespace XSOverlay_VRChat_Status.Classes
                     Properties.Settings.Default.windowsStartup = true;
                 } else
                 {
-                    MessageBox.Show("An error occoured while enabling launch on Windows startup. Try restarting the application as an administrator.", "VRChat Status Error", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                    MessageBox.Show("An error occoured while enabling launch on Windows startup. Try restarting the application as an administrator.", "VRChat Status Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else
             {

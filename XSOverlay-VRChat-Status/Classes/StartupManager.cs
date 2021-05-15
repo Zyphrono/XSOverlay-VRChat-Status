@@ -91,7 +91,6 @@ namespace XSOverlay_VRChat_Status.Classes
             }
             catch (Exception)
             {
-                return false;
             }
 
             try
