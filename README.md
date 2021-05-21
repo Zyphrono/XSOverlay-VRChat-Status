@@ -8,7 +8,7 @@
 ## Quick Notes
 This is one of my first ever pieces of software that is available to the public. The code might be messy but the software itself runs pretty stable.
 
-:warning: I frequently update all of the source files in this repository. I recommend you to not use them to build your own executable. Use the Releases instead.
+:warning: I frequently update all of the source files in this repository. I recommend you not to use them to build your own executable. Use the Releases instead.
 
 ## Libraries used
 - [Onova](https://github.com/Tyrrrz/Onova)
