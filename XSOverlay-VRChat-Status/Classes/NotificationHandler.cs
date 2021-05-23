@@ -17,7 +17,7 @@ namespace XSOverlay_VRChat_Status.Classes
         public static int minimizeMode;
 
         public static ContextMenu menu;
-        public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup, mnuChangelog;
+        public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup, mnuChangelog, mnuForCheckUpdates;
         public static NotifyIcon notificationIcon;
 
         public void checkForChanges()
@@ -75,6 +75,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 Log("[STATUS] Service " + serviceName + " is experiencing some difficulties.", System.ConsoleColor.Yellow);
                 Notifier.SendNotification(new XSNotification
                 {
+                    Icon = XSGlobals.GetBuiltInIconTypeString(XSIconDefaults.Warning),
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Warning),
                     Title = "VRChat Status: " + serviceName,
                     Content = $"This service is currently experiencing some difficulties.",
@@ -105,11 +106,14 @@ namespace XSOverlay_VRChat_Status.Classes
                 mnuStartup = new MenuItem("Run on Windows startup");
                 mnuMinimiseStartup = new MenuItem("Launch Minimised");
                 mnuChangelog = new MenuItem("Open Changelog");
+                mnuForCheckUpdates = new MenuItem("Check for updates");
 
                 menu.MenuItems.Add(0, mnuStartup);
                 menu.MenuItems.Add(1, mnuMinimiseStartup);
                 menu.MenuItems.Add(2, mnuChangelog);
-                menu.MenuItems.Add(3, mnuExit);
+                menu.MenuItems.Add(3, mnuForCheckUpdates);
+                menu.MenuItems.Add(4, mnuExit);
+
                 notificationIcon = new NotifyIcon
                 {
                     Icon = Properties.Resources.softwareIcon,
@@ -129,6 +133,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 mnuChangelog.Click += mnuChangelog_Click;
                 mnuStartup.Click += mnuStartup_Click;
                 mnuMinimiseStartup.Click += mnuMinimiseStartup_Click;
+                mnuForCheckUpdates.Click += mnuCheckForUpdates_Click;
                 notificationIcon.Visible = true;
                 Application.Run();
             }
@@ -155,6 +160,11 @@ namespace XSOverlay_VRChat_Status.Classes
         static void mnuChangelog_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/KnuffelBeestje/XSOverlay-VRChat-Status/releases/");
+        }
+
+        static void mnuCheckForUpdates_Click(object sender, EventArgs e)
+        {
+            checkForUpdates();
         }
         static void mnuMinimiseStartup_Click(object sender, EventArgs e)
         {

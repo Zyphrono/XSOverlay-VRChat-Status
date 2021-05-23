@@ -93,3 +93,6 @@ C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.exe
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.pdb
 C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\icon.ico
+I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\icon.ico
+I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Onova.dll
+I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Onova.xml

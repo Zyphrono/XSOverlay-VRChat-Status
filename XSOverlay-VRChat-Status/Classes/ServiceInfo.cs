@@ -145,6 +145,7 @@ namespace XSOverlay_VRChat_Status.Classes
                 Log("[ERROR] Tried connecting to VRChat API for over 2 times. The software will now be in an inactive state. Restart to reconnect.");
                 Notifier.SendNotification(new XSNotification
                 {
+                    Icon = XSGlobals.GetBuiltInIconTypeString(XSIconDefaults.Error),
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Error),
                     Title = errorMessageTitle,
                     Content = $"Tried 2 times... Program will now be closed to prevent any spam.",
@@ -156,6 +157,7 @@ namespace XSOverlay_VRChat_Status.Classes
             {
                 Notifier.SendNotification(new XSNotification
                 {
+                    Icon = XSGlobals.GetBuiltInIconTypeString(XSIconDefaults.Error),
                     AudioPath = XSGlobals.GetBuiltInAudioSourceString(XSAudioDefault.Error),
                     Title = errorMessageTitle,
                     Content = errorMessageDefaultMessage,

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="errorMessage.DefaultMessage" xml:space="preserve">
-    <value>[ERROR] Failed to check for VRChat API status.</value>
+    <value>Failed to check for VRChat API status. Is your internet working?</value>
   </data>
   <data name="errorMessage.Title" xml:space="preserve">
     <value>VRChat Status Fail</value>

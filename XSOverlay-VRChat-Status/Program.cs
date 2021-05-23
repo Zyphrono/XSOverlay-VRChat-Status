@@ -58,36 +58,7 @@ namespace XSOverlay_VRChat_Status
                 Environment.Exit(0);
             }
             updater = new Classes.Update();
-
-            try
-            {
-                var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
-
-                if (updateversion != null)
-                {
-                    toggleWindow(1);
-                    if (MessageBox.Show("Looks like there's an update available (" + updater.LastVersion + "). Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        Log("An update is currently being downloaded and will be installed automatically. ");
-                        updater.PrepareUpdateAsync(updateversion).Wait();
-
-                        Log("Update has been downloaded. The program will now install and restart.");
-                        updater.FinalizeUpdate(true);
-                    } else
-                    {
-                        toggleWindow(0);
-                        Log("[WARNING] Keeping your software up-to-date is essential to fix any issues. Pre-released versions will NEVER be installed to provide stability.");
-                    }
-                }
-                else
-                {
-                    Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
-                }
-            } catch(Exception e)
-            {
-                Log("[WARNING] Couldn't connect to GitHub to check for updates.");
-            }
-
+            checkForUpdates();
             try
             {
                 Notifier = new XSNotifier();
@@ -131,6 +102,43 @@ namespace XSOverlay_VRChat_Status
         {
             checkTimer.Stop();
             checkTimer.Dispose();
+        }
+        public static void checkForUpdates()
+        {
+            Log("Checking for updates...");
+            Log("");
+            try
+            {
+                var updateversion = updater.CheckForUpdatesAsync().GetAwaiter().GetResult();
+                if (updateversion != null)
+                {
+                    toggleWindow(1);
+                    if (MessageBox.Show("Looks like there's an update available (" + updater.LastVersion + "). Would you like to update and restart the application?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Log("An update is currently being downloaded and will be installed automatically. ");
+                        updater.PrepareUpdateAsync(updateversion).Wait();
+
+                        Log("Update has been downloaded. The program will now install and restart.");
+                        updater.FinalizeUpdate(true);
+                    }
+                    else
+                    {
+                        if (Properties.Settings.Default.launchMinimised == true)
+                        {
+                            toggleWindow(0);
+                        }
+                        Log("[WARNING] Keeping your software up-to-date is essential to fix any issues. Pre-released versions will NEVER be installed to provide stability.");
+                    }
+                }
+                else
+                {
+                    Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                }
+            }
+            catch (Exception e)
+            {
+                Log("[WARNING] Couldn't connect to GitHub to check for updates.");
+            }
         }
         public static void prepareShutdown() // Doesn't do anything besides cancelling everything while still running the console.
         {

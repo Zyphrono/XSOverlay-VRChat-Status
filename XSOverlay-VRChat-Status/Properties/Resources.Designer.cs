@@ -61,7 +61,7 @@ namespace XSOverlay_VRChat_Status.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [ERROR] Failed to check for VRChat API status..
+        ///   Looks up a localized string similar to Failed to check for VRChat API status. Is your internet working?.
         /// </summary>
         internal static string errorMessage_DefaultMessage {
             get {
