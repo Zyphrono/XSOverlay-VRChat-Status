@@ -17,7 +17,7 @@ namespace XSOverlay_VRChat_Status.Classes
         public static int minimizeMode;
 
         public static ContextMenu menu;
-        public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup, mnuChangelog, mnuForCheckUpdates;
+        public static MenuItem mnuExit, mnuStartup, mnuMinimiseStartup, mnuChangelog, mnuForCheckUpdates, mnuSettings, mnuResetSettings;
         public static NotifyIcon notificationIcon;
 
         public void checkForChanges()
@@ -103,16 +103,20 @@ namespace XSOverlay_VRChat_Status.Classes
             {
                 menu = new ContextMenu();
                 mnuExit = new MenuItem("Exit");
+                mnuSettings = new MenuItem("Settings");
                 mnuStartup = new MenuItem("Run on Windows startup");
                 mnuMinimiseStartup = new MenuItem("Launch Minimised");
+                mnuResetSettings = new MenuItem("Reset Settings");
                 mnuChangelog = new MenuItem("Open Changelog");
                 mnuForCheckUpdates = new MenuItem("Check for updates");
 
-                menu.MenuItems.Add(0, mnuStartup);
-                menu.MenuItems.Add(1, mnuMinimiseStartup);
-                menu.MenuItems.Add(2, mnuChangelog);
-                menu.MenuItems.Add(3, mnuForCheckUpdates);
-                menu.MenuItems.Add(4, mnuExit);
+                mnuSettings.MenuItems.Add(0, mnuStartup);
+                mnuSettings.MenuItems.Add(1, mnuMinimiseStartup);
+                mnuSettings.MenuItems.Add(2, mnuResetSettings);
+                menu.MenuItems.Add(0, mnuSettings);
+                menu.MenuItems.Add(1, mnuChangelog);
+                menu.MenuItems.Add(2, mnuForCheckUpdates);
+                menu.MenuItems.Add(3, mnuExit);
 
                 notificationIcon = new NotifyIcon
                 {
@@ -134,6 +138,8 @@ namespace XSOverlay_VRChat_Status.Classes
                 mnuStartup.Click += mnuStartup_Click;
                 mnuMinimiseStartup.Click += mnuMinimiseStartup_Click;
                 mnuForCheckUpdates.Click += mnuCheckForUpdates_Click;
+                mnuResetSettings.Click += mnuResetSettings_Click;
+                mnuForCheckUpdates.Enabled = false;
                 notificationIcon.Visible = true;
                 Application.Run();
             }
@@ -160,6 +166,18 @@ namespace XSOverlay_VRChat_Status.Classes
         static void mnuChangelog_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/KnuffelBeestje/XSOverlay-VRChat-Status/releases/");
+        }
+
+        static void mnuResetSettings_Click(object sender, EventArgs e)
+        {
+            mnuResetSettings.Enabled = false;
+            mnuForCheckUpdates.Enabled = false;
+            mnuExit.Enabled = false;
+            mnuChangelog.Enabled = false;
+            mnuStartup.Enabled = false;
+            mnuSettings.Enabled = false;
+            Debug.resetSettings();
+
         }
 
         static void mnuCheckForUpdates_Click(object sender, EventArgs e)

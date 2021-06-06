@@ -42,6 +42,7 @@ namespace XSOverlay_VRChat_Status
             settingsCheck();
             Classes.NotificationHandler.createNotifyMenu();
             minimisedCheck();
+            Classes.StartupHandler.startupPrompt();
             try
             {
                 Mutex applicationMutex = new Mutex(true, "XSOVRCStatus", out isMutedActive);

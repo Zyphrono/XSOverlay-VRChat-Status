@@ -46,5 +46,17 @@ namespace XSOverlay_VRChat_Status.Properties {
                 this["launchMinimised"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool firstTimeLaunch {
+            get {
+                return ((bool)(this["firstTimeLaunch"]));
+            }
+            set {
+                this["firstTimeLaunch"] = value;
+            }
+        }
     }
 }

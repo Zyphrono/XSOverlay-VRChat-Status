@@ -124,9 +124,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Debug.cs" />
     <Compile Include="Classes\JsonStorage.cs" />
     <Compile Include="Classes\NotificationHandler.cs" />
     <Compile Include="Classes\ServiceInfo.cs" />
+    <Compile Include="Classes\StartupHandler.cs" />
     <Compile Include="Classes\StartupManager.cs" />
     <Compile Include="Classes\Update.cs" />
     <Compile Include="Program.cs" />
