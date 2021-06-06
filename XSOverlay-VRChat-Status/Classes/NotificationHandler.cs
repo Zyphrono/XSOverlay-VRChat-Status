@@ -177,7 +177,6 @@ namespace XSOverlay_VRChat_Status.Classes
             mnuStartup.Enabled = false;
             mnuSettings.Enabled = false;
             Debug.resetSettings();
-
         }
 
         static void mnuCheckForUpdates_Click(object sender, EventArgs e)
