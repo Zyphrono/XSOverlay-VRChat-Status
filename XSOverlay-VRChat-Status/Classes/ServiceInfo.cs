@@ -16,8 +16,11 @@ namespace XSOverlay_VRChat_Status.Classes
         private int _sdkstatus = 1;
         private int _socialstatus = 1;
         private int _authstatus = 1;
-        private int _networkingstatus = 1;
         private int _statechangestatus = 1;
+        private int _stateusa = 1;
+        private int _stateeurope = 1;
+        private int _statejapan = 1;
+
         public int SDKStatus
         {
             get { return _sdkstatus; }
@@ -30,13 +33,26 @@ namespace XSOverlay_VRChat_Status.Classes
         {
             get { return _authstatus; }
         }
-        public int NetworkingStatus
-        {
-            get { return _networkingstatus; }
-        }
         public int StateChangesStatus
         {
             get { return _statechangestatus; }
+        }
+
+        public int StatusJapan
+        {
+            get { return _statejapan; }
+        }
+
+
+        public int StatusEurope
+        {
+            get { return _stateeurope; }
+        }
+
+
+        public int StatusUSA
+        {
+            get { return _stateusa; }
         }
 
         public bool VRChatRunning()
@@ -64,12 +80,6 @@ namespace XSOverlay_VRChat_Status.Classes
                         {
                         try
                         {
-                                Task tasknetworking = GetServiceStatus(1);
-                                tasknetworking.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _networkingstatus = jsonStorage.status;
-                                }
 
                                 Task taskauth = GetServiceStatus(2);
                                 taskauth.Wait();
@@ -98,7 +108,28 @@ namespace XSOverlay_VRChat_Status.Classes
                                     _statechangestatus = jsonStorage.status;
                                 }
 
-                                notificationHandler.checkForChanges();
+                                Task taskusa = GetServiceStatus(6);
+                                taskusa.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _stateusa = jsonStorage.status;
+                                }
+
+                                Task taskeurope = GetServiceStatus(7);
+                                taskeurope.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _stateeurope = jsonStorage.status;
+                                }
+
+                                Task taskjapan = GetServiceStatus(8);
+                                taskjapan.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _statejapan = jsonStorage.status;
+                                }
+
+                            notificationHandler.checkForChanges();
                             } catch (Exception e)
                             {
                                 Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
