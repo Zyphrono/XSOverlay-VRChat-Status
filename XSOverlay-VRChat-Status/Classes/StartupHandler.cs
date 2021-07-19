@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace XSOverlay_VRChat_Status.Classes
 {
-    class StartupHandler
+    static class StartupHandler
     {
         public static void startupPrompt()
         {

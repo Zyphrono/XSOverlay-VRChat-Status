@@ -43,12 +43,10 @@ namespace XSOverlay_VRChat_Status.Classes
             get { return _statejapan; }
         }
 
-
         public int StatusEurope
         {
             get { return _stateeurope; }
         }
-
 
         public int StatusUSA
         {
@@ -80,7 +78,6 @@ namespace XSOverlay_VRChat_Status.Classes
                         {
                         try
                         {
-
                                 Task taskauth = GetServiceStatus(2);
                                 taskauth.Wait();
                                 if (jsonStorage.status != 0) {

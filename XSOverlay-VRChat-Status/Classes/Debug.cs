@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace XSOverlay_VRChat_Status.Classes
 {
-    class Debug
+    static class Debug
     {
         public static void resetSettings()
         {
