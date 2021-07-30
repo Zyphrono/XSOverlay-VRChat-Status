@@ -157,7 +157,6 @@ namespace XSOverlay_VRChat_Status.Classes
                 mnuChangelog.Click += mnuChangelog_Click;
                 mnuStartup.Click += mnuStartup_Click;
                 mnuMinimiseStartup.Click += mnuMinimiseStartup_Click;
-                mnuForCheckUpdates.Click += mnuCheckForUpdates_Click;
                 mnuResetSettings.Click += mnuResetSettings_Click;
                 mnuForCheckUpdates.Enabled = true;
                 notificationIcon.Visible = true;
@@ -197,11 +196,6 @@ namespace XSOverlay_VRChat_Status.Classes
             mnuStartup.Enabled = false;
             mnuSettings.Enabled = false;
             Debug.resetSettings();
-        }
-
-        static void mnuCheckForUpdates_Click(object sender, EventArgs e)
-        {
-            checkForUpdates();
         }
         static void mnuMinimiseStartup_Click(object sender, EventArgs e)
         {
