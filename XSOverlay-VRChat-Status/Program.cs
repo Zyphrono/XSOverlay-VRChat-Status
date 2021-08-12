@@ -82,7 +82,7 @@ namespace XSOverlay_VRChat_Status
 
             checkTimer = new System.Timers.Timer();
             checkTimer.Elapsed += new ElapsedEventHandler(startCheck);
-            checkTimer.Interval = 10000;
+            checkTimer.Interval = 20000;
             checkTimer.Enabled = true;
 
             if(!Serviceinfo.VRChatRunning())
