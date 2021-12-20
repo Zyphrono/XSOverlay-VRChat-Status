@@ -12,10 +12,11 @@ namespace XSOverlay_VRChat_Status.Classes
         private int currentsdkstatus = 1;
         private int currentsocialstatus = 1;
         private int currentauthstatus = 1;
-        private int currentusastatus = 1;
+        private int currentUsaWeststatus = 1;
         private int currenteuropestatus = 1;
         private int currentjapanstatus = 1;
         private int currentstatechangestatus = 1;
+        private int currentUsaEaststatus = 1;
         public static int minimizeMode;
 
         public static ContextMenu menu;
@@ -60,12 +61,21 @@ namespace XSOverlay_VRChat_Status.Classes
                 }
             }
 
-            if (Program.Serviceinfo.StatusUSA != currentusastatus)
+            if (Program.Serviceinfo.StatusUSAWest != currentUsaWeststatus)
             {
-                if (Program.Serviceinfo.StatusUSA != 0)
+                if (Program.Serviceinfo.StatusUSAWest != 0)
                 {
-                    currentusastatus = Program.Serviceinfo.StatusUSA;
-                    sendAlert("Realtime Networking (USA)", currentusastatus);
+                    currentUsaWeststatus = Program.Serviceinfo.StatusUSAWest;
+                    sendAlert("Realtime Networking (USA WEST)", currentUsaWeststatus);
+                }
+            }
+
+            if (Program.Serviceinfo.StateUSAEast != currentUsaEaststatus)
+            {
+                if (Program.Serviceinfo.StateUSAEast != 0)
+                {
+                    currentUsaEaststatus = Program.Serviceinfo.StateUSAEast;
+                    sendAlert("Realtime Networking (USA EAST)", currentUsaEaststatus);
                 }
             }
 

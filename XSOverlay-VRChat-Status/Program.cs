@@ -136,7 +136,7 @@ namespace XSOverlay_VRChat_Status
                     Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
                 }
             }
-            catch (Exception e)
+            catch
             {
                 Log("[WARNING] Couldn't connect to GitHub to check for updates.");
             }
