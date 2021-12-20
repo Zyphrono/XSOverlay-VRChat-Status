@@ -17,7 +17,8 @@ namespace XSOverlay_VRChat_Status.Classes
         private int _socialstatus = 1;
         private int _authstatus = 1;
         private int _statechangestatus = 1;
-        private int _stateusa = 1;
+        private int _stateUsaWest = 1;
+        private int _stateUsaEast = 1;
         private int _stateeurope = 1;
         private int _statejapan = 1;
 
@@ -48,9 +49,14 @@ namespace XSOverlay_VRChat_Status.Classes
             get { return _stateeurope; }
         }
 
-        public int StatusUSA
+        public int StatusUSAWest
         {
-            get { return _stateusa; }
+            get { return _stateUsaWest; }
+        }
+
+        public int StateUSAEast
+        {
+            get { return _stateUsaEast; }
         }
 
         public bool VRChatRunning()
@@ -105,11 +111,18 @@ namespace XSOverlay_VRChat_Status.Classes
                                     _statechangestatus = jsonStorage.status;
                                 }
 
-                                Task taskusa = GetServiceStatus(6);
-                                taskusa.Wait();
+                                Task taskUsaWest = GetServiceStatus(6);
+                                taskUsaWest.Wait();
                                 if (jsonStorage.status != 0)
                                 {
-                                    _stateusa = jsonStorage.status;
+                                    _stateUsaWest = jsonStorage.status;
+                                }
+
+                                Task taskUsaEast = GetServiceStatus(34);
+                                taskUsaEast.Wait();
+                                if (jsonStorage.status != 0)
+                                {
+                                    _stateUsaWest = jsonStorage.status;
                                 }
 
                                 Task taskeurope = GetServiceStatus(7);
