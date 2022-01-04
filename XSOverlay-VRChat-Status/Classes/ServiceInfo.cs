@@ -83,8 +83,6 @@ namespace XSOverlay_VRChat_Status.Classes
 
         public JsonStorage jsonStorage = new JsonStorage();
 
-
-
         public void getStatusses()
         {
             if(VRChatRunning())
