@@ -21,7 +21,7 @@ namespace XSOverlay_VRChat_Status.Classes
         private int _stateUsaEast = 1;
         private int _stateeurope = 1;
         private int _statejapan = 1;
-
+        private bool _VRChatIsRunning = false;
         public int SDKStatus
         {
             get { return _sdkstatus; }
@@ -63,10 +63,20 @@ namespace XSOverlay_VRChat_Status.Classes
         {
             if (Process.GetProcessesByName("VRChat").Length > 0)
             {
+                if (!_VRChatIsRunning)
+                {
+                    _VRChatIsRunning = true;
+                    Log("[NOTICE] A VRChat client is now running. Notifications are now enabled.");
+                }
                 return true;
             }
             else
             {
+                if(_VRChatIsRunning)
+                {
+                    _VRChatIsRunning = false;
+                    Log("[NOTICE] VRChat is closed. Notifications are now disabled. Returning to sleep mode.");
+                }
                 return false;
             }
         }
@@ -75,89 +85,159 @@ namespace XSOverlay_VRChat_Status.Classes
 
         public void getStatusses()
         {
-                if(VRChatRunning())
-                { 
-                    try
+            if(VRChatRunning())
+            {
+                try
+                {
+                    Task taskauth = GetServiceStatus(2);
+                    taskauth.Wait();
+                    if (jsonStorage.status != 0)
                     {
-                        var IsPingValid = true;
-                        if (IsPingValid)
-                        {
+                        _authstatus = jsonStorage.status;
+                    }
+
+                    Task taskSDK = GetServiceStatus(3);
+                    taskSDK.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _sdkstatus = jsonStorage.status;
+                    }
+
+                    Task tasksocial = GetServiceStatus(4);
+                    tasksocial.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _socialstatus = jsonStorage.status;
+                    }
+
+                    Task taskstatechange = GetServiceStatus(5);
+                    taskstatechange.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _statechangestatus = jsonStorage.status;
+                    }
+
+                    Task taskUsaWest = GetServiceStatus(6);
+                    taskUsaWest.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _stateUsaWest = jsonStorage.status;
+                    }
+
+                    Task taskUsaEast = GetServiceStatus(34);
+                    taskUsaEast.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _stateUsaWest = jsonStorage.status;
+                    }
+
+                    Task taskeurope = GetServiceStatus(7);
+                    taskeurope.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _stateeurope = jsonStorage.status;
+                    }
+
+                    Task taskjapan = GetServiceStatus(8);
+                    taskjapan.Wait();
+                    if (jsonStorage.status != 0)
+                    {
+                        _statejapan = jsonStorage.status;
+                    }
+                } catch (Exception e)
+                {
+                    Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
+                    noConnection();
+                }
+            }
+        }
+        public void getStatussesUnused()
+        {
+            if (VRChatRunning())
+            {
+                try
+                {
+                    var IsPingValid = true;
+                    if (IsPingValid)
+                    {
                         try
                         {
-                                Task taskauth = GetServiceStatus(2);
-                                taskauth.Wait();
-                                if (jsonStorage.status != 0) {
-                                    _authstatus = jsonStorage.status;
-                                }
+                            Task taskauth = GetServiceStatus(2);
+                            taskauth.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _authstatus = jsonStorage.status;
+                            }
 
-                                Task taskSDK = GetServiceStatus(3);
-                                taskSDK.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _sdkstatus = jsonStorage.status;
-                                }
+                            Task taskSDK = GetServiceStatus(3);
+                            taskSDK.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _sdkstatus = jsonStorage.status;
+                            }
 
-                                Task tasksocial = GetServiceStatus(4);
-                                tasksocial.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _socialstatus = jsonStorage.status;
-                                }
+                            Task tasksocial = GetServiceStatus(4);
+                            tasksocial.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _socialstatus = jsonStorage.status;
+                            }
 
-                                Task taskstatechange = GetServiceStatus(5);
-                                taskstatechange.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _statechangestatus = jsonStorage.status;
-                                }
+                            Task taskstatechange = GetServiceStatus(5);
+                            taskstatechange.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _statechangestatus = jsonStorage.status;
+                            }
 
-                                Task taskUsaWest = GetServiceStatus(6);
-                                taskUsaWest.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _stateUsaWest = jsonStorage.status;
-                                }
+                            Task taskUsaWest = GetServiceStatus(6);
+                            taskUsaWest.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _stateUsaWest = jsonStorage.status;
+                            }
 
-                                Task taskUsaEast = GetServiceStatus(34);
-                                taskUsaEast.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _stateUsaWest = jsonStorage.status;
-                                }
+                            Task taskUsaEast = GetServiceStatus(34);
+                            taskUsaEast.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _stateUsaWest = jsonStorage.status;
+                            }
 
-                                Task taskeurope = GetServiceStatus(7);
-                                taskeurope.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _stateeurope = jsonStorage.status;
-                                }
+                            Task taskeurope = GetServiceStatus(7);
+                            taskeurope.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _stateeurope = jsonStorage.status;
+                            }
 
-                                Task taskjapan = GetServiceStatus(8);
-                                taskjapan.Wait();
-                                if (jsonStorage.status != 0)
-                                {
-                                    _statejapan = jsonStorage.status;
-                                }
+                            Task taskjapan = GetServiceStatus(8);
+                            taskjapan.Wait();
+                            if (jsonStorage.status != 0)
+                            {
+                                _statejapan = jsonStorage.status;
+                            }
 
                             notificationHandler.checkForChanges();
-                            } catch (Exception e)
-                            {
-                                Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
-                                noConnection();
-                            }
                         }
-                        else
+                        catch (Exception e)
                         {
-                            Log("[ERROR] Failed to check for VRChat API status. Error: Access denied or the server isn't responding. It is recommended to close the program and wait for 10 minutes.");
+                            Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
                             noConnection();
                         }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
+                        Log("[ERROR] Failed to check for VRChat API status. Error: Access denied or the server isn't responding. It is recommended to close the program and wait for 10 minutes.");
                         noConnection();
                     }
                 }
+                catch (Exception e)
+                {
+                    Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
+                    noConnection();
+                }
+            }
         }
 
         private async Task GetServiceStatus(int CompID)

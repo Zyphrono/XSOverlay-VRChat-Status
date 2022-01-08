@@ -185,11 +185,19 @@ namespace XSOverlay_VRChat_Status
                     color = ConsoleColor.Red;
                     break;
                 case string a when a.Contains("[NOTICE]"):
-                    color = ConsoleColor.Blue;
+                    color = ConsoleColor.Magenta;
                     break;
             }
+            string currentTime = DateTime.Now.ToString("T");
             Console.ForegroundColor = color;
-            Console.WriteLine(message);
+            if (message == "")
+            {
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("[{0}] " + message, currentTime);
+            }
             Console.ForegroundColor = ConsoleColor.White;
         }
 
