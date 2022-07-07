@@ -128,7 +128,7 @@ namespace XSOverlay_VRChat_Status.Classes
                     taskUsaEast.Wait();
                     if (jsonStorage.status != 0)
                     {
-                        _stateUsaWest = jsonStorage.status;
+                        _stateUsaEast = jsonStorage.status;
                     }
 
                     Task taskeurope = GetServiceStatus(7);
