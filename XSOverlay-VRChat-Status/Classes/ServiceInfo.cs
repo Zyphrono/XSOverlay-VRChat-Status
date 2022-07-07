@@ -128,7 +128,7 @@ namespace XSOverlay_VRChat_Status.Classes
                     taskUsaEast.Wait();
                     if (jsonStorage.status != 0)
                     {
-                        _stateUsaWest = jsonStorage.status;
+                        _stateUsaEast = jsonStorage.status;
                     }
 
                     Task taskeurope = GetServiceStatus(7);
@@ -145,94 +145,6 @@ namespace XSOverlay_VRChat_Status.Classes
                         _statejapan = jsonStorage.status;
                     }
                 } catch (Exception e)
-                {
-                    Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
-                    noConnection();
-                }
-            }
-        }
-        public void getStatussesUnused()
-        {
-            if (VRChatRunning())
-            {
-                try
-                {
-                    var IsPingValid = true;
-                    if (IsPingValid)
-                    {
-                        try
-                        {
-                            Task taskauth = GetServiceStatus(2);
-                            taskauth.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _authstatus = jsonStorage.status;
-                            }
-
-                            Task taskSDK = GetServiceStatus(3);
-                            taskSDK.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _sdkstatus = jsonStorage.status;
-                            }
-
-                            Task tasksocial = GetServiceStatus(4);
-                            tasksocial.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _socialstatus = jsonStorage.status;
-                            }
-
-                            Task taskstatechange = GetServiceStatus(5);
-                            taskstatechange.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _statechangestatus = jsonStorage.status;
-                            }
-
-                            Task taskUsaWest = GetServiceStatus(6);
-                            taskUsaWest.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _stateUsaWest = jsonStorage.status;
-                            }
-
-                            Task taskUsaEast = GetServiceStatus(34);
-                            taskUsaEast.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _stateUsaWest = jsonStorage.status;
-                            }
-
-                            Task taskeurope = GetServiceStatus(7);
-                            taskeurope.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _stateeurope = jsonStorage.status;
-                            }
-
-                            Task taskjapan = GetServiceStatus(8);
-                            taskjapan.Wait();
-                            if (jsonStorage.status != 0)
-                            {
-                                _statejapan = jsonStorage.status;
-                            }
-
-                            notificationHandler.checkForChanges();
-                        }
-                        catch (Exception e)
-                        {
-                            Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
-                            noConnection();
-                        }
-                    }
-                    else
-                    {
-                        Log("[ERROR] Failed to check for VRChat API status. Error: Access denied or the server isn't responding. It is recommended to close the program and wait for 10 minutes.");
-                        noConnection();
-                    }
-                }
-                catch (Exception e)
                 {
                     Log("[ERROR] Failed to check for VRChat API status. Error: " + e);
                     noConnection();

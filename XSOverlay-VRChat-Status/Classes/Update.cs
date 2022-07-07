@@ -12,7 +12,7 @@ namespace XSOverlay_VRChat_Status.Classes
     class Update
     {
         private readonly IUpdateManager _updateManager = new UpdateManager(
-            new GithubPackageResolver("KnuffelBeestje", "XSOverlay-VRChat-Status", "XSOVR-VRCStatus.zip"),
+            new GithubPackageResolver("Zyphrono", "XSOverlay-VRChat-Status", "XSOVR-VRCStatus.zip"),
             new ZipPackageExtractor()
         );
         private Version _updateVersion;
