@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace XSOverlay_VRChat_Status
 {
@@ -138,12 +139,13 @@ namespace XSOverlay_VRChat_Status
 
                     string versionInfocompare = versionInfo;
                     string Cloudversion = Convert.ToString(updater.LatestAvailableVersion);
-                    var removeablechars = new string[] { "0", "." };
-                    foreach (var c in removeablechars)
+                    List<char> charsToRemove = new List<char>() { '.', '0' };
+                    foreach (char c in charsToRemove)
                     {
-                        versionInfocompare = versionInfo.Replace(c, string.Empty);
-                        Cloudversion = Cloudversion.Replace(c, string.Empty);
+                        versionInfocompare = versionInfocompare.Replace(c.ToString(), String.Empty);
+                        Cloudversion = Cloudversion.Replace(c.ToString(), String.Empty);
                     }
+
                     if (versionInfocompare != Cloudversion)
                     {
                         Log("[WARNING] You're currently running an unstable build: " + versionInfo);
