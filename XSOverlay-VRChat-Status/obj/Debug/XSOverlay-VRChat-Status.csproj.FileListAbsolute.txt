@@ -96,3 +96,39 @@ C:\Users\Kyano\Desktop\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\ic
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\icon.ico
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Onova.dll
 I:\CodeProjecten\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Onova.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\icon.ico
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSOverlay-VRChat-Status.exe.config
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSOverlay-VRChat-Status.exe
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSOverlay-VRChat-Status.pdb
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Newtonsoft.Json.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Onova.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Buffers.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Drawing.Common.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Memory.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Numerics.Vectors.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Text.Encodings.Web.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Text.Json.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Threading.Tasks.Extensions.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.ValueTuple.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\XSNotifications.dll
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Newtonsoft.Json.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\Onova.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Buffers.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Memory.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Numerics.Vectors.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Text.Encodings.Web.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Text.Json.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.Threading.Tasks.Extensions.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\builds\System.ValueTuple.xml
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.AssemblyReference.cache
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.SuggestedBindingRedirects.cache
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay_VRChat_Status.Properties.Resources.resources
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.GenerateResource.cache
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.CoreCompileInputs.cache
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.csproj.CopyComplete
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.exe
+C:\Users\kyano\Desktop\Development Projects\XSOverlay-VRChat-Status\XSOverlay-VRChat-Status\obj\Debug\XSOverlay-VRChat-Status.pdb

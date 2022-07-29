@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace XSOverlay_VRChat_Status
 {
@@ -128,17 +129,36 @@ namespace XSOverlay_VRChat_Status
                         {
                             toggleWindow(0);
                         }
-                        Log("[WARNING] Keeping your software up-to-date is essential to fix any issues. Pre-released versions will NEVER be installed to provide stability.");
+                        Log("[WARNING] Keeping your software up-to-date is essential to fix any issues. Please consider updating as soon as possible.");
                     }
                 }
                 else
                 {
-                    Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                    string versionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + '/' + System.AppDomain.CurrentDomain.FriendlyName).FileVersion;
+
+                    string versionInfocompare = versionInfo;
+                    string Cloudversion = Convert.ToString(updater.LatestAvailableVersion);
+                    var removeablechars = new string[] { "0", "." };
+                    foreach (var c in removeablechars)
+                    {
+                        versionInfocompare = versionInfo.Replace(c, string.Empty);
+                        Cloudversion = Cloudversion.Replace(c, string.Empty);
+                    }
+                    if (versionInfocompare != Cloudversion)
+                    {
+                        Log("[WARNING] You're currently running an unstable build: " + versionInfo);
+                        Log("[WARNING] Please report bugs/issues on GitHub.");
+                    }
+                    else
+                    {
+                        Log("[UPDATER] You're currently using the latest stable build: " + updater.LatestAvailableVersion);
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Log("[WARNING] Couldn't connect to GitHub to check for updates.");
+                Log(Convert.ToString(ex));
             }
         }
         public static void prepareShutdown() // Doesn't do anything besides cancelling everything while still running the console.
