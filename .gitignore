@@ -1,5 +1,5 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/XSOverlay-VRChat-Status/.vs/XSOverlay-VRChat-Status
+﻿/XSOverlay-VRChat-Status/.vs/XSOverlay-VRChat-Status
+/.vs
+/XSOverlay-VRChat-Status/obj
+\XSOverlay-VRChat-Status\obj
+/XSOverlay-VRChat-Status/builds

@@ -135,7 +135,7 @@ namespace XSOverlay_VRChat_Status
                 }
                 else
                 {
-                    string versionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + '/' + System.AppDomain.CurrentDomain.FriendlyName).FileVersion;
+                    string versionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + @"\" + System.AppDomain.CurrentDomain.FriendlyName).FileVersion;
 
                     string versionInfocompare = versionInfo;
                     string Cloudversion = Convert.ToString(updater.LatestAvailableVersion);
