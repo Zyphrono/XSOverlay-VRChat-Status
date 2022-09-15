@@ -1,5 +1,9 @@
 # XSOverlay: VRChat Status [![CodeFactor](https://www.codefactor.io/repository/github/zyphrono/xsoverlay-vrchat-status/badge/master?s=8580c6c2d51b73f3af606b0d9698a650c4c5e642)](https://www.codefactor.io/repository/github/knuffelbeestje/xsoverlay-vrchat-status/overview/master) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/85ec6d5111c241199d4561d86774d668)](https://www.codacy.com/gh/KnuffelBeestje/XSOverlay-VRChat-Status/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KnuffelBeestje/XSOverlay-VRChat-Status&amp;utm_campaign=Badge_Grade)
 
+# :warning: Maintenance Mode (for now)
+I'm going to college and I will be improving my coding skills. Don't expect any major updates for the time being.
+This is just a project I'm doing for fun but sadly I do not have enough time to maintain it right now.
+
 # Requirements
 **Required Runtime:** [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
 
